@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.dummyproject.AlarmApplication
 import com.example.dummyproject.R
 import com.example.dummyproject.databinding.FragmentAddAlarmBinding
+import com.example.dummyproject.di.Injection
 import com.example.dummyproject.model.AlarmModel
 import com.example.dummyproject.model.UIEvent
 import com.example.dummyproject.viewmodel.AddAlarmViewModel
@@ -24,7 +25,7 @@ import java.time.LocalTime
 class AddAlarmFragment: Fragment(R.layout.fragment_add_alarm) {
 
     private val addAlarmViewModel by viewModels<AddAlarmViewModel> {
-        AddAlarmViewModelFactory((requireActivity().application as AlarmApplication).alarmRepository)
+        AddAlarmViewModelFactory(Injection.alarmRepository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

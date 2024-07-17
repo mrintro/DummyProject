@@ -23,8 +23,8 @@ class AddAlarmViewModel(
 
 
     private val setTime = MutableStateFlow<LocalTime>(LocalTime.now())
-    val hour = MutableStateFlow<Int>(LocalTime.now().hour)
-    val minute = MutableStateFlow<Int>(LocalTime.now().minute)
+    val hour = MutableStateFlow(LocalTime.now().hour)
+    val minute = MutableStateFlow(LocalTime.now().minute)
     val description = ObservableField("")
     private val _uiEvent = MutableLiveData<Event<UIEvent>>()
     val uiEvent : LiveData<Event<UIEvent>> = _uiEvent

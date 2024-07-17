@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.dummyproject.AlarmApplication
 import com.example.dummyproject.R
 import com.example.dummyproject.databinding.FragmentFirstBinding
+import com.example.dummyproject.di.Injection
 import com.example.dummyproject.ui.adapter.AlarmListAdapter
 import com.example.dummyproject.viewmodel.AlarmListViewModel
 import com.example.dummyproject.viewmodel.factory.AlarmListViewModelFactory
@@ -17,7 +18,7 @@ import com.example.dummyproject.viewmodel.factory.AlarmListViewModelFactory
 class FirstFragment: Fragment(R.layout.fragment_first) {
 
     private val alarmListViewModel by viewModels<AlarmListViewModel> {
-        AlarmListViewModelFactory((requireActivity().application as AlarmApplication).alarmRepository)
+        AlarmListViewModelFactory(Injection.alarmRepository)
     }
     private val alarmListAdapter by lazy {
         AlarmListAdapter(emptyList())

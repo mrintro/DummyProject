@@ -1,6 +1,7 @@
 package com.example.dummyproject
 
 import android.app.Application
+import android.content.Context
 import androidx.room.RoomDatabase
 import com.example.dummyproject.dao.AlarmDao
 import com.example.dummyproject.data.AlarmRepositoryImpl
@@ -9,13 +10,16 @@ import com.example.dummyproject.database.AlarmDatabase
 
 class AlarmApplication: Application() {
 
-    private val database by lazy {
-        AlarmDatabase.getInstance(this)
+    init {
+        instance = this
     }
-    private val localDataSource by lazy { LocalDataSource(alarmDao = database.alarmDao()) }
-    val alarmRepository by lazy { AlarmRepositoryImpl(localDataSource = localDataSource) }
 
     companion object {
+        private lateinit var instance: AlarmApplication
 
+        fun applicationContext() : Context {
+            return instance.applicationContext
+        }
     }
+
 }
